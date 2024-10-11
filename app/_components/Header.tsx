@@ -16,7 +16,7 @@ import { UserButton, useUser } from "@clerk/nextjs";
 
 const MenuList = [
     { name: "Home", path: "/" },
-    { name: "Create Story", path: "/createStory" },
+    { name: "Create Story", path: "/create_story" },
     { name: "Explore", path: "/explore" },
     { name: "Contact", path: "/contact" },
     { name: "About", path: "/about" },
@@ -24,10 +24,7 @@ const MenuList = [
 
 function Header() {
     const { user, isSignedIn } = useUser();
-    console.log(user,'h');
-    console.log(isSignedIn,'hs');
-    
-    
+
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
     return (
