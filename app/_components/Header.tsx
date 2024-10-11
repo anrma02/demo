@@ -12,6 +12,7 @@ import Image from "next/image";
 import React from "react";
 import logo from "../../public/logo.svg";
 import Link from "next/link";
+import { UserButton, useUser } from "@clerk/nextjs";
 
 const MenuList = [
     { name: "Home", path: "/" },
@@ -22,12 +23,20 @@ const MenuList = [
 ];
 
 function Header() {
+    const { user, isSignedIn } = useUser();
+    console.log(user,'h');
+    console.log(isSignedIn,'hs');
+    
+    
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
     return (
         <Navbar maxWidth="full">
             <NavbarContent>
-               <NavbarMenuToggle aria-label={isMenuOpen ?'Close menu':'Open menu'} className="sm:hidden"/>
+                <NavbarMenuToggle
+                    aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                    className="sm:hidden"
+                />
                 <NavbarBrand>
                     <Image src={logo} alt="logo" width={40} height={40} />
                     <h2 className="font-bold text-2xl text-primary ml-3">
@@ -43,7 +52,10 @@ function Header() {
                 </NavbarContent>
 
                 <NavbarContent justify="end">
-                    <Button color="primary">Get Started</Button>
+                    <Button color="primary">
+                        {isSignedIn ? "Dashboard" : "Get Started"}
+                    </Button>
+                    <UserButton />
                 </NavbarContent>
             </NavbarContent>
 
